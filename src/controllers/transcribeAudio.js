@@ -5,7 +5,7 @@ const { Deepgram } = pkg;
 import dotenv from 'dotenv';
 dotenv.config();
 
-async function transcribeAudio(audioFilePath) {
+async function transcribeAudio(audioFilePath, videoId) {
 	// Your Deepgram API Key from the environment variable
 	const deepgramApiKey = process.env.API_KEY;
 
@@ -40,21 +40,20 @@ async function transcribeAudio(audioFilePath) {
 		//console.dir(transcriptionResponse, { depth: null });
 		//console.log(transcriptionResponse.results.channels[0].alternatives[0].transcript);
 
-		const videoData = new Video({
-			transcribedText: transcriptionResponse.results.channels[0].alternatives[0].transcript,
-			
-		  });
-	  
-		  await videoData.save()
-		  console.log('Video data stored in MongoDB.');
-		
+		const transcribedText = transcriptionResponse.results.channels[0].alternatives[0].transcript;
+
+		// Update the Video object with the transcribed text
+		const updatedVideo = await Video.findOneAndUpdate({ videoId: videoId }, { transcribedText: transcribedText }, { new: true });
+
+		console.log('Video data updated in MongoDB.');
+
 		// Delete the audio file
 		fs.unlink(audioFilePath, (err) => {
 			if (err) {
 				console.error(err);
 				return;
 			}
-			
+
 			console.log(`${audioFilePath} was deleted.`);
 		});
 	} catch (error) {

@@ -25,7 +25,7 @@ async function downloadVideo(url) {
       videoTitle: videoInfo.videoDetails.title,
       videoThumbnail: videoInfo.videoDetails.thumbnails[0].url,
       publishData: videoInfo.videoDetails.publishDate,
-      videoId: videoInfo.videoDetails.videoId,
+      videoId: videoId,
       viewCount: videoInfo.videoDetails.viewCount,
       
     });
@@ -41,7 +41,7 @@ async function downloadVideo(url) {
     console.log('Channel:', videoInfo.videoDetails.author.name);
     console.log('Publish Date:', videoInfo.videoDetails.publishDate)*/
 
-    transcribeAudio(fileName)
+    transcribeAudio(fileName, videoId)
     
   } catch (error) {
     console.error('Error downloading audio:', error);
