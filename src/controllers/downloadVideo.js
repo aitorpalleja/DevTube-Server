@@ -22,7 +22,7 @@ async function downloadVideo(url) {
       channelName: videoInfo.videoDetails.author.name,
       channelAvatar: videoInfo.videoDetails.author.thumbnails[0].url,
       videoTitle: videoInfo.videoDetails.title,
-      videoThumbail: videoInfo.videoDetails.author.name,
+      videoThumbnail: videoInfo.videoDetails.thumbnails[0].url,
       publishData: videoInfo.videoDetails.publishDate,
     });
 
