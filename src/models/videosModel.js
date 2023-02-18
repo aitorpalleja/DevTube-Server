@@ -3,23 +3,23 @@ import Mongoose from "mongoose"
 const VideoSchema = new Mongoose.Schema({
     channelName: {
         type: String,
-        required: false
+        required: true
     },
     channelAvatar: {
         type: String,
-        required: false
+        required: true
     },
     videoTitle: {
         type: String,
-        required: false
+        required: true
     },
     videoThumbnail: {
         type: String,
-        required: false
+        required: true
     },
     publishData: {
         type: Date,
-        required: false
+        required: true
     },
     transcribedText: {
         type: String,
@@ -27,11 +27,11 @@ const VideoSchema = new Mongoose.Schema({
     },
     videoId: {
         type: String,
-        required: false,
+        required: true,
     },
     viewCount: {
         type: Number,
-        required: false
+        required: true
 
     }
 
