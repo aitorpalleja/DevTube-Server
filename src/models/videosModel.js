@@ -24,6 +24,15 @@ const VideoSchema = new Mongoose.Schema({
     transcribedText: {
         type: String,
         required: false
+    },
+    videoId: {
+        type: String,
+        required: true,
+    },
+    viewCount: {
+        type: Number,
+        required: true
+
     }
 
 });

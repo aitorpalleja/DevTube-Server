@@ -24,6 +24,9 @@ async function downloadVideo(url) {
       videoTitle: videoInfo.videoDetails.title,
       videoThumbnail: videoInfo.videoDetails.thumbnails[0].url,
       publishData: videoInfo.videoDetails.publishDate,
+      videoId: videoInfo.videoDetails.videoId,
+      viewCount: videoInfo.videoDetails.viewCount,
+      
     });
 
     await videoData.save()
