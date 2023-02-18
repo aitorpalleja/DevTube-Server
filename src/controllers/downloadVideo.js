@@ -1,4 +1,5 @@
 import Video from '../models/videosModel.js';
+import transcribeAudio from './transcribeAudio.js'
 import { createWriteStream } from 'fs';
 import ytdl from 'ytdl-core';
 
@@ -38,9 +39,9 @@ async function downloadVideo(url) {
     console.log('Title:', videoInfo.videoDetails.title);
     console.log('Thumbnail:', videoInfo.videoDetails.thumbnails[0].url);
     console.log('Channel:', videoInfo.videoDetails.author.name);
-    console.log('Publish Date:', videoInfo.videoDetails.publishDate)
+    console.log('Publish Date:', videoInfo.videoDetails.publishDate)*/
 
-    //transcribeLocalAudio(fileName)*/
+    transcribeAudio(fileName)
     
   } catch (error) {
     console.error('Error downloading audio:', error);

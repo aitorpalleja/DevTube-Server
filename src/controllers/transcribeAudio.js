@@ -1,3 +1,4 @@
+import Video from '../models/videosModel.js';
 import fs from "fs";
 import pkg from '@deepgram/sdk';
 const { Deepgram } = pkg;
@@ -35,9 +36,17 @@ async function transcribeAudio(audioFilePath) {
 	try {
 		const transcriptionResponse = await deepgram.transcription
 			.preRecorded(audioSource, transcriptionOptions);
-		console.log("Transcription response:");
+		//console.log("Transcription response:");
 		//console.dir(transcriptionResponse, { depth: null });
-		console.log(transcriptionResponse.results.channels[0].alternatives[0].transcript);
+		//console.log(transcriptionResponse.results.channels[0].alternatives[0].transcript);
+
+		const videoData = new Video({
+			transcribedText: transcriptionResponse.results.channels[0].alternatives[0].transcript,
+			
+		  });
+	  
+		  await videoData.save()
+		  console.log('Video data stored in MongoDB.');
 		
 		// Delete the audio file
 		fs.unlink(audioFilePath, (err) => {
@@ -48,7 +57,6 @@ async function transcribeAudio(audioFilePath) {
 			
 			console.log(`${audioFilePath} was deleted.`);
 		});
-		return transcriptionResponse;
 	} catch (error) {
 		console.error("Error during transcription:", error);
 		return error;
