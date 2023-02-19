@@ -1,7 +1,10 @@
 import Express from "express";
+import { get } from "mongoose";
 const router = Express.Router();
 
 import downloadVideo from '../controllers/downloadVideo.js';
+import getCreatorsData from "../controllers/getCreatorsData.js";
+import getAllData from "../controllers/getAllData.js";
 
 
 router.get('/', (req, res) => {
@@ -15,6 +18,19 @@ router.get('/download', async (req, res) => {
     res.send('Video downloaded successfully.');
   } catch (error) {
     res.status(500).send(`Error downloading video: ${error.message}`);
+  }
+});
+
+router.get('/getCreatorsData', (req, res) => {
+  getCreatorsData(req, res)
+});
+
+router.get('/getAllData', async (req, res) => {
+  try {
+    const videos = await getAllData();
+    res.json(videos);
+  } catch (error) {
+    res.status(500).send('An error occurred while fetching videos.');
   }
 });
 
