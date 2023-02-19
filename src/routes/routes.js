@@ -21,8 +21,13 @@ router.get('/download', async (req, res) => {
   }
 });
 
-router.get('/getCreatorsData', (req, res) => {
-  getCreatorsData(req, res)
+router.get('/getCreatorsData', async (req, res) => {
+  try {
+    const creators = await getCreatorsData();
+    res.json(creators);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 router.get('/getAllData', async (req, res) => {
