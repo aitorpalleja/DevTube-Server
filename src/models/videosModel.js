@@ -1,14 +1,11 @@
 import Mongoose from "mongoose"
 
 const VideoSchema = new Mongoose.Schema({
-    channelName: {
-        type: String,
-        required: true
-    },
-    channelAvatar: {
-        type: String,
-        required: true
-    },
+    creator: {
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: 'Creator',
+        required: true,
+      },
     videoTitle: {
         type: String,
         required: true
@@ -16,14 +13,6 @@ const VideoSchema = new Mongoose.Schema({
     videoThumbnail: {
         type: String,
         required: true
-    },
-    publishData: {
-        type: Date,
-        required: true
-    },
-    transcribedText: {
-        type: String,
-        required: false
     },
     videoId: {
         type: String,
@@ -33,6 +22,18 @@ const VideoSchema = new Mongoose.Schema({
         type: Number,
         required: true
 
+    },
+    publishData: {
+        type: Date,
+        required: true
+    },
+    videoDescription: {
+        type: String,
+        required: true
+    },
+    transcribedText: {
+        type: String,
+        required: false
     }
 
 });
