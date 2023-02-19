@@ -1,4 +1,5 @@
 import Video from '../models/videosModel.js';
+import Creator from '../models/creatorsModel.js';
 import transcribeAudio from './transcribeAudio.js'
 import { createWriteStream } from 'fs';
 import ytdl from 'ytdl-core';
@@ -19,15 +20,24 @@ async function downloadVideo(url) {
       outputStream.on('error', reject);
     });
 
+    let creator = await Creator.findOne({ name: videoInfo.videoDetails.author.name });
+    if (!creator) {
+      creator = new Creator({
+        name: videoInfo.videoDetails.author.name,
+        avatar: videoInfo.videoDetails.author.thumbnails[0].url,
+        subscribersCount: videoInfo.videoDetails.author.subscriber_count,
+      });
+      await creator.save();
+    }
+
     const videoData = new Video({
-      channelName: videoInfo.videoDetails.author.name,
-      channelAvatar: videoInfo.videoDetails.author.thumbnails[0].url,
+      creator: creator._id,
       videoTitle: videoInfo.videoDetails.title,
       videoThumbnail: videoInfo.videoDetails.thumbnails[0].url,
-      publishData: videoInfo.videoDetails.publishDate,
       videoId: videoId,
       viewCount: videoInfo.videoDetails.viewCount,
-      
+      videoDescription: videoInfo.videoDetails.description,
+      publishData: videoInfo.videoDetails.publishDate,
     });
 
     await videoData.save()
@@ -42,7 +52,7 @@ async function downloadVideo(url) {
     console.log('Publish Date:', videoInfo.videoDetails.publishDate)*/
 
     transcribeAudio(fileName, videoId)
-    
+
   } catch (error) {
     console.error('Error downloading audio:', error);
   }
