@@ -30,10 +30,14 @@ async function downloadVideo(url) {
       await creator.save();
     }
 
+    const thumbnail = videoInfo.videoDetails.thumbnails.reduce((prev, current) => {
+      return (prev.width > current.width) ? prev : current;
+    });
+
     const videoData = new Video({
       creator: creator._id,
       videoTitle: videoInfo.videoDetails.title,
-      videoThumbnail: videoInfo.videoDetails.thumbnails[0].url,
+      videoThumbnail: thumbnail.url,
       videoId: videoId,
       viewCount: videoInfo.videoDetails.viewCount,
       videoDescription: videoInfo.videoDetails.description,
