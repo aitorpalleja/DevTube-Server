@@ -12,8 +12,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/download', async (req, res) => {
+  const { url } = req.query;
+  if (!url) {
+    return res.status(400).send('Invalid URL');
+  }
+
   try {
-    const { url } = req.query;
     await downloadVideo(url);
     res.send('Video downloaded successfully.');
   } catch (error) {

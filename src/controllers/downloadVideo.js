@@ -30,9 +30,9 @@ async function downloadVideo(url) {
       await creator.save();
     }
 
-    const thumbnail = videoInfo.videoDetails.thumbnails.reduce((prev, current) => {
-      return (prev.width > current.width) ? prev : current;
-    });
+    // Get biggest thumbnail
+    const thumbnail = videoInfo.videoDetails.thumbnails.sort((a, b) => b.width - a.width)[0];
+
 
     const videoData = new Video({
       creator: creator._id,
