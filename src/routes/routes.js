@@ -5,6 +5,8 @@ const router = Express.Router();
 import downloadVideo from '../controllers/downloadVideo.js';
 import getCreatorsData from "../controllers/getCreatorsData.js";
 import getAllData from "../controllers/getAllData.js";
+import getVideoData from '../controllers/getVideoData.js';
+
 
 
 router.get('/', (req, res) => {
@@ -42,6 +44,10 @@ router.get('/getAllData', async (req, res) => {
     res.status(500).send('An error occurred while fetching videos.');
   }
 });
+
+router.get('/getVideoData/:videoId', getVideoData);
+
+
 
 
 export default router;
