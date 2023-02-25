@@ -1,5 +1,3 @@
-// videoController.js
-
 import VideosData from '../models/videosModel.js';
 
 async function getVideoData(req, res) {
