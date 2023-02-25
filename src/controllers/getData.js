@@ -1,7 +1,7 @@
 import CreatorsData from '../models/creatorsModel.js'
 import VideosData from '../models/videosModel.js'
 
-async function getAllData() {
+async function getData() {
     try {
       const videos = await VideosData.find().populate('creator');
       return Promise.all(
@@ -14,12 +14,9 @@ async function getAllData() {
             viewCount: video.viewCount,
             videoDuration: video.videoDuration,
             publishData: video.publishData,
-            videoDescription: video.videoDescription,
-            transcribedText: video.transcribedText,
             creator: {
               name: creator.name,
               avatar: creator.avatar,
-              subscribersCount: creator.subscribersCount,
             },
           };
         })
@@ -30,4 +27,4 @@ async function getAllData() {
     }
   }
 
-export default getAllData;
+export default getData;
