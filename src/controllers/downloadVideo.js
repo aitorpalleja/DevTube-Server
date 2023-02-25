@@ -40,6 +40,7 @@ async function downloadVideo(url) {
       videoThumbnail: thumbnail.url,
       videoId: videoId,
       viewCount: videoInfo.videoDetails.viewCount,
+      videoDuration: videoInfo.videoDetails.lengthSeconds,
       videoDescription: videoInfo.videoDetails.description,
       publishData: videoInfo.videoDetails.publishDate,
     });

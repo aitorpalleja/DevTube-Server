@@ -23,6 +23,10 @@ const VideoSchema = new Mongoose.Schema({
         required: true
 
     },
+    videoDuration: {
+        type: Number,
+        required: true
+    },
     publishData: {
         type: Date,
         required: true
