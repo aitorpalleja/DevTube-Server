@@ -1,4 +1,5 @@
 import Video from '../models/videosModel.js';
+import countWords from './countWords.js';
 import fs from "fs";
 import pkg from '@deepgram/sdk';
 const { Deepgram } = pkg;
@@ -36,13 +37,10 @@ async function transcribeAudio(audioFilePath, videoId) {
 	try {
 		const transcriptionResponse = await deepgram.transcription
 			.preRecorded(audioSource, transcriptionOptions);
-		//console.log("Transcription response:");
-		//console.dir(transcriptionResponse, { depth: null });
-		//console.log(transcriptionResponse.results.channels[0].alternatives[0].transcript);
 
 		const transcribedText = transcriptionResponse.results.channels[0].alternatives[0].transcript;
 
-		// Update the Video object with the transcribed text
+		// Update the Video object with the transcribed text and word count
 		const updatedVideo = await Video.findOneAndUpdate({ videoId: videoId }, { transcribedText: transcribedText }, { new: true });
 
 		console.log('Video data updated in MongoDB.');
@@ -56,6 +54,7 @@ async function transcribeAudio(audioFilePath, videoId) {
 
 			console.log(`${audioFilePath} was deleted.`);
 		});
+		countWords(transcribedText, videoId)
 	} catch (error) {
 		console.error("Error during transcription:", error);
 		return error;

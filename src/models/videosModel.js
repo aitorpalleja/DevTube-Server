@@ -38,6 +38,10 @@ const VideoSchema = new Mongoose.Schema({
     transcribedText: {
         type: String,
         required: false
+    },
+    wordCount: {
+        type: Number,
+        required: false
     }
 
 });
