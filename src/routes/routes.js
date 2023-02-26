@@ -8,6 +8,9 @@ import getAllData from "../controllers/queries/getAllData.js";
 import getVideoData from '../controllers/queries/getVideoData.js';
 import getData from "../controllers/queries/getData.js";
 
+import getTranscriptionDataForVideo from '../controllers/queries/getTranscriptionDataForVideo.js'
+
+
 
 
 router.get('/', (req, res) => {
@@ -56,6 +59,10 @@ router.get('/getData', async (req, res) => {
 });
 
 router.get('/getVideoData/:videoId', getVideoData);
+
+router.get('/getTranscriptionDataForVideo/:videoId', getTranscriptionDataForVideo);
+
+
 
 
 

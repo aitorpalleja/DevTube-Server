@@ -1,12 +1,18 @@
-import Mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const TranscriptionMetricsSchema = new Mongoose.Schema({
-    wordCount: {
-        type: String,
-        required: true
+const TranscriptionMetricsSchema = new mongoose.Schema({
+    video: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Video',
+        required: true,
     },
+    wordCount: {
+        type: Number,
+        required: true,
+    },
+
 });
 
-const TranscriptionMetrics = Mongoose.model("TranscriptionMetrics", TranscriptionMetricsSchema);
+const TranscriptionMetrics = mongoose.model("TranscriptionMetrics", TranscriptionMetricsSchema);
 
 export default TranscriptionMetrics;
