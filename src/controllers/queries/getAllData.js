@@ -1,5 +1,5 @@
-import CreatorsData from '../models/creatorsModel.js'
-import VideosData from '../models/videosModel.js'
+import CreatorsData from '../../models/creatorsModel.js'
+import VideosData from '../../models/videosModel.js'
 
 async function getAllData() {
     try {

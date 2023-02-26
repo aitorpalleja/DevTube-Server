@@ -1,4 +1,4 @@
-import CreatorsData from '../models/creatorsModel.js'
+import CreatorsData from '../../models/creatorsModel.js'
 
 const getCreatorsData = async () => {
   try {

@@ -1,4 +1,4 @@
-import VideosData from '../models/videosModel.js';
+import VideosData from '../../models/videosModel.js';
 
 async function getVideoData(req, res) {
   try {

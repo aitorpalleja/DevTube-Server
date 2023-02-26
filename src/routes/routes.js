@@ -1,12 +1,12 @@
 import Express from "express";
-import { get } from "mongoose";
 const router = Express.Router();
 
 import downloadVideo from '../controllers/downloadVideo.js';
-import getCreatorsData from "../controllers/getCreatorsData.js";
-import getAllData from "../controllers/getAllData.js";
-import getVideoData from '../controllers/getVideoData.js';
-import getData from "../controllers/getData.js";
+
+import getCreatorsData from "../controllers/queries/getCreatorsData.js";
+import getAllData from "../controllers/queries/getAllData.js";
+import getVideoData from '../controllers/queries/getVideoData.js';
+import getData from "../controllers/queries/getData.js";
 
 
 
