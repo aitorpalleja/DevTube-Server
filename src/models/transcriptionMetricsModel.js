@@ -10,6 +10,10 @@ const TranscriptionMetricsSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    wordsPerMinute: {
+        type: Number,
+        required: true,
+    },
 
 });
 

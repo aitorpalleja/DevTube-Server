@@ -33,14 +33,15 @@ async function downloadVideo(url) {
     // Get biggest thumbnail
     const thumbnail = videoInfo.videoDetails.thumbnails.sort((a, b) => b.width - a.width)[0];
 
-
+    const videoDuration = videoInfo.videoDetails.lengthSeconds;
+    
     const videoData = new Video({
       creator: creator._id,
       videoTitle: videoInfo.videoDetails.title,
       videoThumbnail: thumbnail.url,
       videoId: videoId,
       viewCount: videoInfo.videoDetails.viewCount,
-      videoDuration: videoInfo.videoDetails.lengthSeconds,
+      videoDuration: videoDuration,
       videoDescription: videoInfo.videoDetails.description,
       publishData: videoInfo.videoDetails.publishDate,
     });
@@ -56,7 +57,7 @@ async function downloadVideo(url) {
     console.log('Channel:', videoInfo.videoDetails.author.name);
     console.log('Publish Date:', videoInfo.videoDetails.publishDate)*/
 
-    transcribeAudio(fileName, videoId)
+    transcribeAudio(fileName, videoId, videoDuration)
 
   } catch (error) {
     console.error('Error downloading audio:', error);

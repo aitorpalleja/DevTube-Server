@@ -6,7 +6,7 @@ const { Deepgram } = pkg;
 import dotenv from 'dotenv';
 dotenv.config();
 
-async function transcribeAudio(audioFilePath, videoId) {
+async function transcribeAudio(audioFilePath, videoId, videoDuration) {
 	// Your Deepgram API Key from the environment variable
 	const deepgramApiKey = process.env.API_KEY;
 
@@ -54,7 +54,7 @@ async function transcribeAudio(audioFilePath, videoId) {
 
 			console.log(`${audioFilePath} was deleted.`);
 		});
-		countWords(transcribedText, videoId)
+		countWords(transcribedText, videoId, videoDuration)
 	} catch (error) {
 		console.error("Error during transcription:", error);
 		return error;
