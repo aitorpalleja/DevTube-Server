@@ -39,11 +39,6 @@ const VideoSchema = new Mongoose.Schema({
         type: String,
         required: false
     },
-    wordCount: {
-        type: Number,
-        required: false
-    }
-
 });
 
 const Video = Mongoose.model("Video", VideoSchema);
