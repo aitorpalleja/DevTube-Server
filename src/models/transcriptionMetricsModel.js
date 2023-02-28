@@ -14,6 +14,16 @@ const TranscriptionMetricsSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    topWords: [{
+        word: {
+            type: String,
+            required: false
+        },
+        count: {
+            type: Number,
+            required: false
+        }
+    }]
 
 });
 
