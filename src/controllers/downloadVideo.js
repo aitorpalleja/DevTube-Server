@@ -24,7 +24,7 @@ async function downloadVideo(url) {
     if (!creator) {
       creator = new Creator({
         name: videoInfo.videoDetails.author.name,
-        avatar: videoInfo.videoDetails.author.thumbnails[0].url,
+        avatar: videoInfo.videoDetails.author.thumbnails[videoInfo.videoDetails.author.thumbnails.length - 1].url,
         subscribersCount: videoInfo.videoDetails.author.subscriber_count,
       });
       await creator.save();
