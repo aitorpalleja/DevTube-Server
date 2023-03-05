@@ -9,7 +9,7 @@ import getVideoData from '../controllers/queries/getVideoData.js';
 import getData from "../controllers/queries/getData.js";
 
 import getTranscriptionDataForVideo from '../controllers/queries/getTranscriptionDataForVideo.js'
-
+import getWebDevVideos from "../controllers/queries/getWebDevVideos.js";
 
 
 
@@ -49,18 +49,34 @@ router.get('/getAllData', async (req, res) => {
   }
 });
 
-router.get('/getData', async (req, res) => {
+router.get('/getData', async (req, res, next) => {
   try {
-    const videos = await getData();
-    res.json(videos);
+    const data = await getData();
+    res.json(data);
   } catch (error) {
-    res.status(500).send('An error occurred while fetching videos.');
+    console.error(error);
+    next(error);
   }
 });
+
+router.get('/getData/:category', async (req, res, next) => {
+  try {
+    const { category } = req.params;
+    const data = await getData(category);
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 
 router.get('/getVideoData/:videoId', getVideoData);
 
 router.get('/getTranscriptionDataForVideo/:videoId', getTranscriptionDataForVideo);
+
+router.get('/webdev', getWebDevVideos);
+
 
 
 
