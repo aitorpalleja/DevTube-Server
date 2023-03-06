@@ -9,7 +9,8 @@ import getVideoData from '../controllers/queries/getVideoData.js';
 import getData from "../controllers/queries/getData.js";
 
 import getTranscriptionDataForVideo from '../controllers/queries/getTranscriptionDataForVideo.js'
-import getWebDevVideos from "../controllers/queries/getWebDevVideos.js";
+
+import getCreatorData from '../controllers/queries/getCreatorData.js';
 
 
 
@@ -75,10 +76,7 @@ router.get('/getVideoData/:videoId', getVideoData);
 
 router.get('/getTranscriptionDataForVideo/:videoId', getTranscriptionDataForVideo);
 
-router.get('/webdev', getWebDevVideos);
-
-
-
+router.get('/getCreatorData/:creatorName', getCreatorData);
 
 
 
