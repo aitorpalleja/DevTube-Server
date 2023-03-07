@@ -3,7 +3,8 @@ import TranscriptionMetrics from '../models/transcriptionMetricsModel.js';
 
 async function countWords(transcribedText, videoId, videoDuration) {
   try {
-    const words = transcribedText.trim().toLowerCase().split(/[\s,.;:!?¡¿()«»]+/);
+    const excludedWords = ["el", "la", "los", "las", "un", "una", "unos", "unas", "yo", "tú", "él", "ella", "usted", "nosotros", "vosotros", "ellos", "ellas", "ustedes", "este", "esta", "estos", "estas", "ese", "esa", "esos", "esas", "aquel", "aquella", "aquellos", "aquellas", "a", "ante", "bajo", "cabe", "con", "contra", "de", "desde", "en", "entre", "hacia", "hasta", "para", "por", "según", "sin", "sobre", "tras", "y", "e", "ni", "o", "u", "pero", "mas", "sino", "que", "porque", "pues", "ya que", "aunque", "si", "cuando", "mientras", "como", "donde"];
+    const words = transcribedText.trim().toLowerCase().split(/[\s,.;:!?¡¿()«»]+/).filter(word => !excludedWords.includes(word));
     const wordCount = words.length;
     const wordsPerMinute = wordCount / (videoDuration / 60);
 
