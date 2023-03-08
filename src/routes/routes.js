@@ -3,7 +3,7 @@ const router = Express.Router();
 
 import downloadVideo from '../controllers/downloadVideo.js';
 
-import getCreatorsData from "../controllers/queries/getCreatorsData.js";
+import getAllCreators from "../controllers/queries/getAllCreators.js";
 import getAllData from "../controllers/queries/getAllData.js";
 import getVideoData from '../controllers/queries/getVideoData.js';
 import getData from "../controllers/queries/getData.js";
@@ -32,9 +32,9 @@ router.get('/download', async (req, res) => {
   }
 });
 
-router.get('/getCreatorsData', async (req, res) => {
+router.get('/getAllCreators', async (req, res) => {
   try {
-    const creators = await getCreatorsData();
+    const creators = await getAllCreators();
     res.json(creators);
   } catch (err) {
     res.status(500).json({ message: err.message });
