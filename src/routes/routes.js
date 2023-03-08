@@ -1,8 +1,6 @@
 import Express from "express";
 const router = Express.Router();
 
-import downloadVideo from '../controllers/downloadVideo.js';
-
 import getAllCreators from "../controllers/queries/getAllCreators.js";
 import getAllData from "../controllers/queries/getAllData.js";
 import getVideoData from '../controllers/queries/getVideoData.js';
